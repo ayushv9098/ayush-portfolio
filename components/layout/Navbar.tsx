@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 import { Mail } from "lucide-react";
-import Image from "next/image";
 
 export default function Navbar() {
   const navLinks = [
@@ -23,13 +22,8 @@ export default function Navbar() {
     >
       <nav className="glass-card px-5 py-2 rounded-full flex items-center gap-6 border border-white/5 bg-black/40 backdrop-blur-lg pointer-events-auto shadow-sm">
         <Link href="/" className="flex items-center gap-2 group mr-2">
-          <div className="w-8 h-8 relative flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-            <Image
-              src="/logo.png"
-              alt="AV Logo"
-              fill
-              className="object-contain"
-            />
+          <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white text-[10px] font-bold shadow-sm">
+            A
           </div>
           <span className="text-white text-sm font-semibold tracking-tight hidden sm:block">Ayush</span>
         </Link>
