@@ -152,7 +152,7 @@ export default function Hero() {
       </div>
 
       {/* Grid Pattern Overlay - Extremely subtle */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.002)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.002)_1px,transparent_1px)] bg-[size:120px:120px] pointer-events-none -z-10" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.002)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.002)_1px,transparent_1px)] bg-[size:120px_120px] pointer-events-none -z-10" />
     </section>
   );
 }

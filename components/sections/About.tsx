@@ -25,6 +25,21 @@ export default function About() {
   return (
     <section id="about" className="section-spacing relative overflow-hidden">
       <div className="section-container relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-10 md:mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
+            Design <span className="text-gradient">& Development</span>
+          </h2>
+          <p className="text-neutral-400 max-w-xl mx-auto text-[14px] md:text-base font-light leading-relaxed px-4">
+            Specializing in creating high-performance digital solutions with a focus on modern architecture and user experience.
+          </p>
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => (
             <motion.div
