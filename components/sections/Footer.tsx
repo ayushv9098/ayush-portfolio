@@ -1,5 +1,6 @@
-import { GithubIcon, LinkedinIcon, InstagramIcon, TwitterIcon } from "@/components/icons/SocialIcons";
+import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,8 +8,13 @@ export default function Footer() {
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
           <Link href="/" className="flex items-center gap-2 justify-center md:justify-start">
-            <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white text-[9px] font-bold">
-              A
+            <div className="w-6 h-6 relative flex items-center justify-center">
+              <Image
+                src="/logo.png"
+                alt="AV Logo"
+                fill
+                className="object-contain"
+              />
             </div>
             <span className="text-white text-sm font-semibold tracking-tight">Ayush Vishwakarma</span>
           </Link>
