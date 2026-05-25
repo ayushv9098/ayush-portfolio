@@ -4,22 +4,22 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    role: "Senior Frontend Engineer",
-    company: "TechNova Inc.",
-    duration: "2024 - Present",
-    desc: "Leading the development of highly interactive web applications using Next.js and WebGL. Established new design systems and improved performance.",
+    role: "Student & Software Developer",
+    company: "Personal Projects & Learning",
+    duration: "2026 - Present",
+    desc: "Building AI-powered software, mobile apps, games, dashboards, automation tools, school management systems, and modern digital experiences while exploring AI/ML and advanced technologies.",
   },
   {
-    role: "UI/UX Designer & Developer",
-    company: "Creative Studio",
-    duration: "2022 - 2024",
-    desc: "Designed and built award-winning landing pages for high-profile clients. Focused on fluid web experiences and micro-interactions.",
+    role: "Started Software Development",
+    company: "Foundational Phase",
+    duration: "2024 - 2025",
+    desc: "Learning programming, UI design, app development, responsive interfaces, animations, and building real-world personal projects.",
   },
   {
-    role: "Frontend Developer",
-    company: "StartupX",
-    duration: "2020 - 2022",
-    desc: "Developed responsive web apps from scratch. Collaborated closely with product teams to deliver high-quality features.",
+    role: "Exploring Technology",
+    company: "Early Interest",
+    duration: "Before 2024",
+    desc: "Interested in computers, games, technology, design, and digital creativity which later turned into a passion for development.",
   },
 ];
 
