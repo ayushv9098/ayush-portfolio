@@ -1,12 +1,55 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Send } from "lucide-react";
-import { LinkedinIcon, GithubIcon, InstagramIcon, DiscordIcon } from "@/components/icons/SocialIcons";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { LinkedinIcon, GithubIcon, InstagramIcon, TwitterIcon, DiscordIcon } from "@/components/icons/SocialIcons";
 import Link from "next/link";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+
+  const validate = () => {
+    const newErrors: typeof errors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setStatus("loading");
+    
+    // Simulate API call
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
+  };
+
   const socials = [
+    {
+      name: "Email",
+      icon: <Mail size={18} />,
+      link: "mailto:ayushvishvakarma956@gmail.com",
+      handle: "ayushvishvakarma956@gmail.com",
+      color: "hover:text-primary"
+    },
     {
       name: "LinkedIn",
       icon: <LinkedinIcon size={18} />,
@@ -29,9 +72,16 @@ export default function Contact() {
       color: "hover:text-pink-400"
     },
     {
+      name: "X (Twitter)",
+      icon: <TwitterIcon size={18} />,
+      link: "https://x.com/ayushv9098",
+      handle: "@ayushv9098",
+      color: "hover:text-white"
+    },
+    {
       name: "Discord",
       icon: <DiscordIcon size={18} />,
-      link: "#",
+      link: "https://discord.com/users/1048510622851149865",
       handle: "ayusxh_.10",
       color: "hover:text-indigo-400"
     }
@@ -63,25 +113,31 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-3 glass-card p-6 md:p-8 rounded-2xl border border-white/5 relative overflow-hidden"
           >
-            <form className="flex flex-col gap-4 md:gap-6">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="flex flex-col gap-1.5 md:gap-2.5">
                   <label htmlFor="name" className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-2">Name</label>
                   <input 
                     type="text" 
                     id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="John Doe" 
-                    className="w-full bg-white/[0.02] border border-white/5 rounded-xl px-4 py-2.5 md:px-5 md:py-3 text-sm text-white focus:outline-none focus:border-primary/40 focus:bg-white/[0.04] transition-all duration-300 placeholder:text-neutral-700"
+                    className={`w-full bg-white/[0.02] border ${errors.name ? 'border-red-500/50' : 'border-white/5'} rounded-xl px-4 py-2.5 md:px-5 md:py-3 text-sm text-white focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 focus:bg-white/[0.04] transition-all duration-300 placeholder:text-neutral-700`}
                   />
+                  {errors.name && <span className="text-[10px] text-red-500 ml-2 font-medium">{errors.name}</span>}
                 </div>
                 <div className="flex flex-col gap-1.5 md:gap-2.5">
                   <label htmlFor="email" className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-2">Email</label>
                   <input 
                     type="email" 
                     id="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="john@example.com" 
-                    className="w-full bg-white/[0.02] border border-white/5 rounded-xl px-4 py-2.5 md:px-5 md:py-3 text-sm text-white focus:outline-none focus:border-primary/40 focus:bg-white/[0.04] transition-all duration-300 placeholder:text-neutral-700"
+                    className={`w-full bg-white/[0.02] border ${errors.email ? 'border-red-500/50' : 'border-white/5'} rounded-xl px-4 py-2.5 md:px-5 md:py-3 text-sm text-white focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 focus:bg-white/[0.04] transition-all duration-300 placeholder:text-neutral-700`}
                   />
+                  {errors.email && <span className="text-[10px] text-red-500 ml-2 font-medium">{errors.email}</span>}
                 </div>
               </div>
               
@@ -90,18 +146,58 @@ export default function Contact() {
                 <textarea 
                   id="message"
                   rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell me about your project..." 
-                  className="w-full bg-white/[0.02] border border-white/5 rounded-xl px-4 py-2.5 md:px-5 md:py-3 text-sm text-white focus:outline-none focus:border-primary/40 focus:bg-white/[0.04] transition-all duration-300 placeholder:text-neutral-700 resize-none"
+                  className={`w-full bg-white/[0.02] border ${errors.message ? 'border-red-500/50' : 'border-white/5'} rounded-xl px-4 py-2.5 md:px-5 md:py-3 text-sm text-white focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 focus:bg-white/[0.04] transition-all duration-300 placeholder:text-neutral-700 resize-none`}
                 />
+                {errors.message && <span className="text-[10px] text-red-500 ml-2 font-medium">{errors.message}</span>}
               </div>
 
-              <button
-                type="button"
-                className="group relative flex items-center justify-center gap-2 w-52 h-11 md:h-12 bg-gradient-to-r from-primary via-primary to-secondary text-white rounded-full font-bold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_20px_rgba(139,92,246,0.3)] mx-auto md:w-full"
-              >
-                <span>Send Message</span>
-                <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-              </button>
+              <div className="relative flex flex-col items-center gap-4 mt-2">
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className={`group relative flex items-center justify-center gap-2 w-full h-11 md:h-12 bg-gradient-to-r from-primary via-primary to-secondary text-white rounded-full font-bold text-sm transition-all shadow-[0_4px_20px_rgba(139,92,246,0.3)] ${status === "loading" ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.01] active:scale-[0.98]'}`}
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                    </>
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {status === "success" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2 text-emerald-400 text-sm font-medium"
+                    >
+                      <CheckCircle2 size={16} />
+                      <span>Message sent successfully!</span>
+                    </motion.div>
+                  )}
+                  {status === "error" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2 text-red-400 text-sm font-medium"
+                    >
+                      <AlertCircle size={16} />
+                      <span>Something went wrong. Please try again.</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </form>
           </motion.div>
 

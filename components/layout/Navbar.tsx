@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/SocialIcons";
+import { GithubIcon, LinkedinIcon, InstagramIcon, TwitterIcon, DiscordIcon } from "@/components/icons/SocialIcons";
 import { Mail } from "lucide-react";
 
 export default function Navbar() {
@@ -50,6 +50,12 @@ export default function Navbar() {
           </Link>
           <Link href="https://www.instagram.com/ayusxh_.10" target="_blank" className="hover:text-white transition-colors">
             <InstagramIcon size={15} />
+          </Link>
+          <Link href="https://x.com/ayushv9098" target="_blank" className="hover:text-white transition-colors">
+            <TwitterIcon size={15} />
+          </Link>
+          <Link href="https://discord.com/users/1048510622851149865" target="_blank" className="hover:text-white transition-colors">
+            <DiscordIcon size={15} />
           </Link>
           <Link href="#contact" className="flex items-center gap-1.5 bg-white/5 text-white px-4 py-2 rounded-full text-[11px] font-bold transition-all border border-white/10 hover:bg-white/10 hover:border-primary/50 group/btn">
             <Mail size={11} className="text-primary group-hover/btn:scale-110 transition-transform" />

@@ -9,7 +9,7 @@ import Image from "next/image";
 const projects = [
   {
     title: "School Fee App",
-    desc: "Comprehensive fee management system with automated invoicing, student record tracking, and instant WhatsApp alerts for parents.",
+    desc: "Comprehensive school management system featuring automated fee tracking, digital receipts, and real-time WhatsApp notifications for parents.",
     tags: ["React", "Firebase", "Tailwind"],
     link: "https://school-fee-app.vercel.app",
     github: "https://github.com/ayushv9098",
@@ -17,8 +17,8 @@ const projects = [
     image: "/school-fee-app.png",
   },
   {
-    title: "Student Education App",
-    desc: "Feature-rich educational portal providing course management, performance tracking, and an interactive learning interface for students.",
+    title: "Student Document Management App",
+    desc: "Secure cloud-based platform for educational institutions to organize, track, and manage student records and academic documentation with ease.",
     tags: ["Next.js", "TypeScript", "Tailwind"],
     link: "https://student-duc.vercel.app",
     github: "https://github.com/ayushv9098",
@@ -27,7 +27,7 @@ const projects = [
   },
   {
     title: "Ayushman Educational",
-    desc: "Next-gen institutional dashboard for managing academic programs, faculty resources, and centralized student communications.",
+    desc: "Custom-built educational portal designed for high-performance learning, featuring interactive course modules and a streamlined student dashboard.",
     tags: ["Next.js", "React", "Tailwind"],
     link: "https://ayushmanedu.vercel.app/",
     github: "https://github.com/ayushv9098",

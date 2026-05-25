@@ -2,23 +2,11 @@
 
 import { motion, Variants } from "framer-motion";
 import { 
-  Code2, 
   Smartphone, 
   Database, 
-  Layers, 
   Monitor, 
-  Zap, 
-  Cpu, 
-  Layout, 
-  PenTool, 
-  Wind,
-  Server
+  PenTool
 } from "lucide-react";
-
-interface Skill {
-  name: string;
-  icon?: React.ReactNode;
-}
 
 interface Category {
   title: string;

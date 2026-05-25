@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, MessageSquare } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
+import { ArrowRight, Sparkles, MessageSquare, Download } from "lucide-react";
+import { GithubIcon, LinkedinIcon, TwitterIcon, DiscordIcon } from "@/components/icons/SocialIcons";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -66,6 +66,16 @@ export default function Hero() {
               <span>View Projects</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
+
+            <Link
+              href="/resume.pdf"
+              target="_blank"
+              download
+              className="group relative inline-flex items-center gap-2 px-6 py-2.5 glass-card border border-white/10 text-white rounded-full font-bold text-sm transition-all hover:bg-white/5"
+            >
+              <Download size={14} className="group-hover:-translate-y-0.5 transition-transform" />
+              <span>Resume</span>
+            </Link>
             
             <div className="flex items-center gap-2.5">
               <Link
@@ -81,6 +91,20 @@ export default function Hero() {
                 className="w-10 h-10 rounded-full border border-white/5 glass-card flex items-center justify-center text-white hover:bg-white/5 transition-all"
               >
                 <LinkedinIcon size={16} />
+              </Link>
+              <Link
+                href="https://x.com/ayushv9098"
+                target="_blank"
+                className="w-10 h-10 rounded-full border border-white/5 glass-card flex items-center justify-center text-white hover:bg-white/5 transition-all"
+              >
+                <TwitterIcon size={16} />
+              </Link>
+              <Link
+                href="https://discord.com/users/1048510622851149865"
+                target="_blank"
+                className="w-10 h-10 rounded-full border border-white/5 glass-card flex items-center justify-center text-white hover:bg-white/5 transition-all"
+              >
+                <DiscordIcon size={16} />
               </Link>
               <Link
                 href="#contact"

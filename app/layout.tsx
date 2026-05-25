@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Ayush Vishwakarma | Full Stack & Android Developer",
     description: "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences.",
     images: ["/ayush-profile.png"],
-    creator: "@ayusxh_.10",
+    creator: "@ayushv9098",
   },
   icons: {
     icon: "/favicon.svg",
@@ -61,7 +61,8 @@ export default function RootLayout({
     "sameAs": [
       "https://www.linkedin.com/in/ayush-vishwakarma-82573a358/",
       "https://github.com/ayushv9098",
-      "https://www.instagram.com/ayusxh_.10"
+      "https://www.instagram.com/ayusxh_.10",
+      "https://x.com/ayushv9098"
     ],
     "description": "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences."
   };
