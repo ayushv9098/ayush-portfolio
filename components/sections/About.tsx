@@ -1,67 +1,93 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Smartphone, Globe } from "lucide-react";
+import { User, Target, Lightbulb, Rocket } from "lucide-react";
 
 export default function About() {
-  const features = [
+  const pillars = [
     {
-      icon: <Globe className="text-primary" size={20} />,
-      title: "Software Development",
-      desc: "Developing robust and scalable software solutions with a focus on architecture, performance, and user-centric design.",
+      icon: <Target className="text-primary" size={20} />,
+      title: "Problem Solver",
+      desc: "Transforming complex challenges into elegant, functional digital solutions."
     },
     {
-      icon: <Smartphone className="text-secondary" size={20} />,
-      title: "Android Development",
-      desc: "Crafting native Android applications with Kotlin and Jetpack Compose for a smooth and intuitive user experience.",
+      icon: <User className="text-secondary" size={20} />,
+      title: "User Centric",
+      desc: "Designing with the end-user in mind, ensuring every interaction feels natural."
     },
     {
-      icon: <Code2 className="text-accent" size={20} />,
-      title: "Full Stack Systems",
-      desc: "Designing complete real-world systems like fee management platforms and educational apps with robust backends.",
+      icon: <Lightbulb className="text-accent" size={20} />,
+      title: "Self Taught",
+      desc: "Driven by curiosity and a relentless passion for learning new technologies."
     },
+    {
+      icon: <Rocket className="text-primary" size={20} />,
+      title: "Future Focused",
+      desc: "Evolving with the tech landscape, from mobile apps to AI-integrated platforms."
+    }
   ];
 
   return (
     <section id="about" className="section-spacing relative overflow-hidden">
       <div className="section-container relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10 md:mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
-            Design <span className="text-gradient">& Development</span>
-          </h2>
-          <p className="text-neutral-400 max-w-xl mx-auto text-[14px] md:text-base font-light leading-relaxed px-4">
-            Specializing in creating high-performance digital solutions with a focus on modern architecture and user experience.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-              className="glass-card p-6 rounded-2xl relative group overflow-hidden border border-white/5"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-all duration-500 ease-out">
-                {feature.icon}
-              </div>
-              <h3 className="text-lg font-bold text-white mb-3 tracking-tight">{feature.title}</h3>
-              <p className="text-neutral-400 text-sm leading-relaxed font-light group-hover:text-neutral-300 transition-colors">
-                {feature.desc}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          
+          {/* Left Side: Narrative */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 lg:pt-2"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-6 border border-white/5">
+              <User size={10} className="text-primary" />
+              <span>About Me</span>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight leading-tight">
+              Behind the <span className="text-gradient">Code</span>
+            </h2>
+            
+            <div className="text-neutral-400 font-light leading-relaxed text-sm md:text-base max-w-xl">
+              <p>
+                I am <span className="text-white font-medium">Ayush Vishwakarma</span>, a Software Engineer focused on building high-performance systems and real-world digital solutions.
               </p>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
+          {/* Right Side: Key Pillars Grid */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 grid grid-cols-2 gap-4"
+          >
+            {pillars.map((pillar, index) => (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
+                className="glass-card p-4 md:p-5 rounded-xl border border-white/5 hover:border-white/10 transition-all duration-300 group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-500">
+                  <div className="scale-90">{pillar.icon}</div>
+                </div>
+                <h3 className="text-xs font-bold text-white mb-1 tracking-tight">{pillar.title}</h3>
+                <p className="text-[11px] md:text-xs text-neutral-500 leading-relaxed font-light">
+                  {pillar.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
+
+      {/* Background Decorative Element */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none -z-10" />
     </section>
   );
 }
