@@ -13,8 +13,7 @@ const projects = [
     tags: ["React", "Firebase", "Tailwind"],
     link: "https://school-fee-app.vercel.app",
     github: "https://github.com/ayushv9098",
-    color: "from-blue-500/5 to-transparent",
-    image: "/school-fee-app.png",
+    image: "/chatgpt-project.png",
   },
   {
     title: "Student Document Management App",
@@ -22,8 +21,7 @@ const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind"],
     link: "https://student-duc.vercel.app",
     github: "https://github.com/ayushv9098",
-    color: "from-purple-500/5 to-transparent",
-    image: "/student-education-app.png",
+    image: "/student-management-new.png",
   },
   {
     title: "Ayushman Educational",
@@ -31,8 +29,7 @@ const projects = [
     tags: ["Next.js", "React", "Tailwind"],
     link: "https://ayushmanedu.vercel.app/",
     github: "https://github.com/ayushv9098",
-    color: "from-emerald-500/5 to-transparent",
-    image: "/ayushman-edu.png",
+    image: "/ayushman-edu-new.png",
   },
 ];
 
@@ -71,42 +68,32 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
               className="glass-card rounded-2xl overflow-hidden group border border-white/5 transition-all duration-300 flex flex-col hover:border-white/10"
             >
-              {/* Image Container - Switched to Contain for Full View */}
-              <div 
-                className="w-full aspect-video relative overflow-hidden bg-black/40 p-2 flex items-center justify-center border-b border-white/5"
-              >
-                {project.image.startsWith("/") ? (
-                  <div className="relative w-full h-full">
-                    <Image 
-                      src={project.image} 
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-                      priority={index === 0}
-                    />
-                  </div>
-                ) : (
-                  <div className="absolute inset-0" style={{ background: project.image }} />
-                )}
-                
-                {/* Glow Interaction */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-                
-                {/* Overlay Links - Always accessible and clear */}
-                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-black/60 backdrop-blur-[1px] translate-y-2 group-hover:translate-y-0">
-                  <Link href={project.link} target="_blank" className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-all shadow-2xl">
-                    <ExternalLink size={18} />
-                  </Link>
-                  <Link href={project.github} target="_blank" className="w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-2xl border border-white/20">
-                    <GithubIcon size={18} />
-                  </Link>
+              {project.image && (
+                 <div className="w-full aspect-video relative overflow-hidden bg-black/40 border-b border-white/5">
+             <Image
+               src={project.image}
+               alt={project.title}
+               fill
+               sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+             />
+             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
-              </div>
+              )}
 
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-primary transition-colors">{project.title}</h3>
-                <p className="text-neutral-400 mb-6 text-sm font-light leading-relaxed line-clamp-2">
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-primary transition-colors pr-4">{project.title}</h3>
+                  <div className="flex items-center gap-3 shrink-0">
+                    <Link href={project.github} target="_blank" className="text-neutral-400 hover:text-white transition-colors">
+                      <GithubIcon size={18} />
+                    </Link>
+                    <Link href={project.link} target="_blank" className="text-neutral-400 hover:text-white transition-colors">
+                      <ExternalLink size={18} />
+                    </Link>
+                  </div>
+                </div>
+                <p className="text-neutral-400 mb-6 text-sm font-light leading-relaxed">
                   {project.desc}
                 </p>
                 <div className="flex flex-wrap gap-2 mt-auto">
