@@ -49,8 +49,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="text-base md:text-lg text-neutral-400 mb-10 leading-relaxed font-light"
           >
-            Passionate Software Developer specializing in building high-performance 
-            web applications, native Android solutions, and scalable digital systems.
+            Full Stack &amp; Android Developer building real, shipped apps — from school fee
+            automation to learning platforms — that schools and students actually use.
           </motion.p>
 
           <motion.div

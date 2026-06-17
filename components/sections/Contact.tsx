@@ -6,6 +6,10 @@ import { Send, Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { LinkedinIcon, GithubIcon, InstagramIcon, TwitterIcon, DiscordIcon } from "@/components/icons/SocialIcons";
 import Link from "next/link";
 
+// Get yours free at https://web3forms.com (enter your email, key is sent instantly).
+// This key is safe to be public — it only allows sending mail to your inbox.
+const WEB3FORMS_ACCESS_KEY = "ff3a96b5-ad7f-4304-bec0-9ea6ccd31df8";
+
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -29,13 +33,28 @@ export default function Contact() {
     if (!validate()) return;
 
     setStatus("loading");
-    
-    // Simulate API call
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 5000);
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New portfolio message from ${formData.name}`,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        throw new Error(data.message);
+      }
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
