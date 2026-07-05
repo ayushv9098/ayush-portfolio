@@ -14,7 +14,7 @@ const projects = [
     tags: ["Next.js", "React", "Node.js", "Supabase", "TypeScript"],
     link: "https://english-bolo.vercel.app/",
     github: "https://github.com/ayushv9098/english-bolo",
-    image: "/english-bolo.png",
+    image: "/english-bolo-v2.png",
   },
   {
     title: "School Fee App",
@@ -160,36 +160,22 @@ export default function Projects() {
                 className="w-[80vw] sm:w-[380px] shrink-0 snap-start glass-card rounded-2xl overflow-hidden group border border-white/5 transition-all duration-300 flex flex-col hover:border-white/10"
               >
                 {project.image && (
-                  <div className="w-full relative overflow-hidden border-b border-white/5 bg-transparent p-3 sm:p-6 flex items-center justify-center">
+                  <div className="w-full relative overflow-hidden bg-transparent p-3 sm:p-5 flex items-center justify-center border-b border-white/5">
                     
-                    {/* Glow effect behind the mockup */}
-                    <div className="absolute inset-0 bg-primary/20 blur-[80px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
+                    {/* Glow effect behind the image */}
+                    <div className="absolute inset-0 bg-primary/10 blur-[60px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
 
-                    {/* MacBook / Browser Mockup Container */}
-                    <div className="w-full aspect-video bg-[#1a1a1a] rounded-t-lg rounded-b-sm border border-white/10 shadow-2xl overflow-hidden relative flex flex-col transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2 z-10">
-                      
-                      {/* MacOS Top Bar */}
-                      <div className="h-6 sm:h-7 bg-[#2d2d2d] border-b border-white/5 flex items-center px-3 gap-1.5 shrink-0">
-                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#FF5F56]"></div>
-                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#FFBD2E]"></div>
-                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#27C93F]"></div>
-                      </div>
-
-                      {/* Screenshot Area with Scroll-on-Hover */}
-                      <div className="relative w-full flex-1 bg-black overflow-hidden">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          quality={100}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover object-top transition-[object-position] duration-[4000ms] ease-in-out group-hover:object-bottom"
-                        />
-                      </div>
+                    {/* Image Container */}
+                    <div className="relative w-full aspect-video rounded-xl shadow-2xl overflow-hidden flex flex-col transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-1 z-10">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        quality={100}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-contain"
+                      />
                     </div>
-                    
-                    {/* MacBook Bottom Lip */}
-                    <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] h-1 sm:h-1.5 bg-[#404040] rounded-b-xl opacity-0 group-hover:opacity-100 transition-all duration-700 z-0"></div>
                   </div>
                 )}
 
