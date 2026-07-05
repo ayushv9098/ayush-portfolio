@@ -5,26 +5,26 @@ import { GraduationCap, Code2, Search } from "lucide-react";
 
 const experiences = [
   {
-    role: "Student & Software Developer",
-    company: "Personal Projects & Learning",
+    role: "Full Stack & AI Developer",
+    company: "Freelance / Self-Initiated",
     duration: "2026 - Present",
-    desc: "Building AI software, mobile apps, and systems while exploring advanced AI/ML technologies.",
+    desc: "Building and shipping real products — English Bolo (AI English tutor), School Fee App used by 2 schools daily, and exploring AI/ML integration in web apps. Actively freelancing and learning by building.",
     icon: <Code2 size={18} className="text-primary" />,
     color: "from-primary/10 to-transparent"
   },
   {
-    role: "Foundational Phase",
-    company: "Software Development",
+    role: "Learning & Building Phase",
+    company: "Mentored by Brother (Software Engineer)",
     duration: "2024 - 2025",
-    desc: "Mastering UI design, app development, and responsive interfaces through real-world projects.",
+    desc: "Learned React, Next.js, Firebase, and Tailwind under my brother's guidance — he's a Software Engineer and taught me everything hands-on. Built my first real apps and deployed them live on Vercel.",
     icon: <GraduationCap size={18} className="text-secondary" />,
     color: "from-secondary/10 to-transparent"
   },
   {
-    role: "Early Interest",
-    company: "Exploring Technology",
+    role: "The Spark",
+    company: "Curiosity & First Steps",
     duration: "Before 2024",
-    desc: "Passionate about computers and design, turning early curiosity into a development career.",
+    desc: "Got introduced to coding by my brother. Started with basic HTML/CSS, spent hours watching him work, and slowly picked up things. That's when I realized — this is what I want to do for real.",
     icon: <Search size={18} className="text-accent" />,
     color: "from-accent/10 to-transparent"
   },
@@ -45,7 +45,7 @@ export default function Experience() {
             The <span className="text-gradient">Journey</span>
           </h2>
           <p className="text-neutral-500 text-sm md:text-base font-light max-w-xl">
-            A concise timeline of my evolution from technology enthusiast to software engineer.
+            A concise timeline of my evolution from technology enthusiast to full-stack developer.
           </p>
         </motion.div>
 
@@ -57,7 +57,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-6 rounded-2xl border border-white/5 group relative overflow-hidden flex flex-col hover:border-white/10"
+              className="glass-card p-6 rounded-2xl border border-white/10 group relative overflow-hidden flex flex-col hover:border-white/20"
             >
               {/* Animated Glow */}
               <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />

@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[60vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-12 md:pt-40 md:pb-20">
+    <section className="relative min-h-[60vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden pt-24 pb-8 md:pt-40 md:pb-20">
       {/* Background Cinematic Lighting - Highly optimized */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] opacity-[0.08] pointer-events-none -z-10">
         <div className="absolute top-1/4 left-1/4 w-[200px] h-[200px] bg-primary rounded-full blur-[50px]" />
@@ -49,8 +49,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="text-base md:text-lg text-neutral-400 mb-10 leading-relaxed font-light"
           >
-            Full Stack &amp; Android Developer building real, shipped apps — from school fee
-            automation to learning platforms — that schools and students actually use.
+            I'm a developer who builds fast, modern web and mobile apps. I enjoy turning ideas into fully working products, from the frontend to the backend.
           </motion.p>
 
           <motion.div

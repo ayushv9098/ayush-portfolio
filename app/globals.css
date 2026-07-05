@@ -110,6 +110,14 @@ body {
 }
 
 .section-spacing {
-  padding-top: clamp(2.5rem, 8vh, 7rem); /* Reduced from 4rem-7rem */
-  padding-bottom: clamp(2.5rem, 8vh, 7rem);
+  padding-top: clamp(2rem, 5vh, 4rem);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+}
+
+/* Tighter vertical spacing on mobile only (desktop unchanged) */
+@media (max-width: 767px) {
+  .section-spacing {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
 }

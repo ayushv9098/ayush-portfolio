@@ -51,7 +51,7 @@ export default function About() {
             
             <div className="text-neutral-400 font-light leading-relaxed text-sm md:text-base max-w-xl">
               <p>
-                I am <span className="text-white font-medium">Ayush Vishwakarma</span>, a Software Engineer focused on building high-performance systems and real-world digital solutions.
+                I am <span className="text-white font-medium">Ayush Vishwakarma</span>, a Developer focused on building high-performance apps and real-world digital solutions.
               </p>
             </div>
           </motion.div>

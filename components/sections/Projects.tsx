@@ -2,11 +2,20 @@
 
 import { motion } from "framer-motion";
 import { GithubIcon } from "@/components/icons/SocialIcons";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight, GripHorizontal } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 const projects = [
+  {
+    title: "English Bolo",
+    desc: "An engaging platform to learn and practice English speaking. Features interactive lessons and real-time feedback to improve fluency and confidence.",
+    tags: ["Next.js", "React", "Node.js", "Supabase", "TypeScript"],
+    link: "https://english-bolo.vercel.app/",
+    github: "https://github.com/ayushv9098/english-bolo",
+    image: "/english-bolo.png",
+  },
   {
     title: "School Fee App",
     desc: "A full-stack school management system that automates fee tracking, generates instant digital receipts, and sends real-time WhatsApp reminders to parents. Currently used by 2 schools managing 400+ students, replacing manual registers and follow-up calls.",
@@ -34,6 +43,63 @@ const projects = [
 ];
 
 export default function Projects() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showDragHint, setShowDragHint] = useState(true);
+
+  // Hide drag hint after 4 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setShowDragHint(false), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Track which card is in view
+  const handleScroll = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const scrollLeft = container.scrollLeft;
+    const cardWidth = container.firstElementChild
+      ? (container.firstElementChild as HTMLElement).offsetWidth
+      : 1;
+    const gap = 24;
+    const index = Math.round(scrollLeft / (cardWidth + gap));
+    setActiveIndex(Math.min(index, projects.length - 1));
+  }, []);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const scrollTo = (direction: "left" | "right") => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = container.firstElementChild
+      ? (container.firstElementChild as HTMLElement).offsetWidth
+      : 300;
+    const gap = 24;
+    const scrollAmount = cardWidth + gap;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToIndex = (index: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = container.firstElementChild
+      ? (container.firstElementChild as HTMLElement).offsetWidth
+      : 300;
+    const gap = 24;
+    container.scrollTo({
+      left: index * (cardWidth + gap),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section id="projects" className="section-spacing relative overflow-hidden">
       <div className="section-container z-10 relative">
@@ -42,7 +108,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className="mb-8 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6"
         >
           <div className="max-w-xl">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
@@ -52,60 +118,139 @@ export default function Projects() {
               Focusing on building functional systems that solve real problems.
             </p>
           </div>
-          <Link href="https://github.com/ayushv9098" target="_blank" className="group inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-all pb-1.5 border-b border-white/5 hover:border-primary text-sm font-medium">
-            <span>GitHub Profile</span>
-            <ExternalLink size={14} className="group-hover:rotate-45 transition-transform duration-300" />
-          </Link>
+
+          {/* Navigation Arrows + Counter (Desktop) */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Project Counter Badge */}
+            <span className="text-xs font-bold text-neutral-500 tracking-wider uppercase">
+              {activeIndex + 1} / {projects.length}
+            </span>
+            <button
+              onClick={() => scrollTo("left")}
+              disabled={activeIndex === 0}
+              className="w-10 h-10 rounded-full border border-white/10 glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Previous project"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={() => scrollTo("right")}
+              disabled={activeIndex === projects.length - 1}
+              className="w-10 h-10 rounded-full border border-white/10 glass-card flex items-center justify-center text-white hover:bg-white/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Next project"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-              className="glass-card rounded-2xl overflow-hidden group border border-white/5 transition-all duration-300 flex flex-col hover:border-white/10"
-            >
-              {project.image && (
-                 <div className="w-full aspect-video relative overflow-hidden bg-black/40 border-b border-white/5">
-             <Image
-               src={project.image}
-               alt={project.title}
-               fill
-               sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
-             />
-             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                </div>
-              )}
+        {/* Carousel Container */}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto snap-x snap-mandatory gap-6 lg:gap-8 pb-4 pl-6 pr-6 md:pl-0 md:pr-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing [scroll-padding-left:1.5rem]"
+          >
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                className="w-[80vw] sm:w-[380px] shrink-0 snap-start glass-card rounded-2xl overflow-hidden group border border-white/5 transition-all duration-300 flex flex-col hover:border-white/10"
+              >
+                {project.image && (
+                  <div className="w-full relative overflow-hidden border-b border-white/5 bg-transparent p-3 sm:p-6 flex items-center justify-center">
+                    
+                    {/* Glow effect behind the mockup */}
+                    <div className="absolute inset-0 bg-primary/20 blur-[80px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
 
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-primary transition-colors pr-4">{project.title}</h3>
-                  <div className="flex items-center gap-3 shrink-0">
-                    <Link href={project.github} target="_blank" className="text-neutral-400 hover:text-white transition-colors">
-                      <GithubIcon size={18} />
-                    </Link>
-                    <Link href={project.link} target="_blank" className="text-neutral-400 hover:text-white transition-colors">
-                      <ExternalLink size={18} />
-                    </Link>
+                    {/* MacBook / Browser Mockup Container */}
+                    <div className="w-full aspect-video bg-[#1a1a1a] rounded-t-lg rounded-b-sm border border-white/10 shadow-2xl overflow-hidden relative flex flex-col transition-transform duration-700 group-hover:scale-105 group-hover:-translate-y-2 z-10">
+                      
+                      {/* MacOS Top Bar */}
+                      <div className="h-6 sm:h-7 bg-[#2d2d2d] border-b border-white/5 flex items-center px-3 gap-1.5 shrink-0">
+                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#FF5F56]"></div>
+                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#FFBD2E]"></div>
+                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#27C93F]"></div>
+                      </div>
+
+                      {/* Screenshot Area with Scroll-on-Hover */}
+                      <div className="relative w-full flex-1 bg-black overflow-hidden">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          quality={100}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover object-top transition-[object-position] duration-[4000ms] ease-in-out group-hover:object-bottom"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* MacBook Bottom Lip */}
+                    <div className="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] h-1 sm:h-1.5 bg-[#404040] rounded-b-xl opacity-0 group-hover:opacity-100 transition-all duration-700 z-0"></div>
+                  </div>
+                )}
+
+                <div className="p-4 sm:p-6 flex-1 flex flex-col">
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-primary transition-colors pr-4">{project.title}</h3>
+                    <div className="flex items-center gap-3 shrink-0">
+                      <Link href={project.github} target="_blank" className="text-neutral-400 hover:text-white transition-colors">
+                        <GithubIcon size={18} />
+                      </Link>
+                      <Link href={project.link} target="_blank" className="text-neutral-400 hover:text-white transition-colors">
+                        <ExternalLink size={18} />
+                      </Link>
+                    </div>
+                  </div>
+                  <p className="text-neutral-400 mb-6 text-sm font-light leading-relaxed">
+                    {project.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/5 border border-white/5 text-neutral-500">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <p className="text-neutral-400 mb-6 text-sm font-light leading-relaxed">
-                  {project.desc}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/5 border border-white/5 text-neutral-500">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Drag Hint (shows initially then fades out) */}
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: showDragHint ? 1 : 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-center gap-2 mt-1 pointer-events-none"
+          >
+            <motion.div
+              animate={{ x: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <GripHorizontal size={16} className="text-neutral-600" />
             </motion.div>
-          ))}
+            <span className="text-[11px] text-neutral-600 font-medium tracking-wide">Drag to explore more</span>
+          </motion.div>
+
+          {/* Dot Indicators */}
+          <div className="flex items-center justify-center gap-2 mt-2">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToIndex(index)}
+                aria-label={`Go to project ${index + 1}`}
+                className={`rounded-full transition-all duration-300 ${
+                  activeIndex === index
+                    ? "w-8 h-2 bg-primary"
+                    : "w-2 h-2 bg-white/20 hover:bg-white/40"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

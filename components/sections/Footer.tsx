@@ -14,7 +14,7 @@ export default function Footer() {
             <span className="text-white text-sm font-semibold tracking-tight">Ayush Vishwakarma</span>
           </Link>
           <p className="text-neutral-600 text-[11px] mt-2 font-medium tracking-wide">
-            © {new Date().getFullYear()} — SOFTWARE ENGINEER.
+            © {new Date().getFullYear()} — DEVELOPER.
           </p>
         </div>
 
