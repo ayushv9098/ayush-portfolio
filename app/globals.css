@@ -1,16 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030303;
-  --foreground: #ffffff;
-  --muted: #888888;
+  --background: #060608;
+  --foreground: #f5f5f7;
+  --muted: #8e8e93;
   --border: rgba(255, 255, 255, 0.08);
-  --glass: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  
-  --primary: #8b5cf6; /* Purple */
-  --secondary: #3b82f6; /* Blue */
-  --accent: #ec4899; /* Pink */
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --glass: rgba(12, 12, 16, 0.7);
 }
 
 @theme inline {
@@ -19,105 +15,176 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-glass: var(--glass);
-  --color-glass-border: var(--glass-border);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #030303;
-    --foreground: #ffffff;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  background-color: #060608;
+  color: #f5f5f7;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
-  line-height: 1.5; /* Slightly tighter line height for professional feel */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 255, 255, 0.05), transparent 75%),
+    radial-gradient(ellipse 70% 50% at 90% 50%, rgba(255, 255, 255, 0.015), transparent),
+    radial-gradient(ellipse 70% 50% at 10% 80%, rgba(255, 255, 255, 0.02), transparent);
+  background-attachment: fixed;
 }
 
 ::selection {
-  background: var(--primary);
-  color: white;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
-/* Custom Scrollbar - Even Thinner */
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: #060608;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 10px;
+  background: #27272a;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333;
+  background: #52525b;
 }
 
-/* Glassmorphism Classes - Optimized for performance */
-.glass {
-  background: var(--glass);
-  backdrop-filter: blur(4px); /* Reduced from 8px */
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid var(--glass-border);
-}
-
+/* Luxury Obsidian Glass Card */
 .glass-card {
-  background: rgba(255, 255, 255, 0.02); /* Simplified background */
-  backdrop-filter: blur(8px); /* Reduced from 12px */
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Animated gradient text */
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 48px -6px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Bento Card with Mouse Coordinate Spotlight */
+.bento-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(255, 255, 255, 0.05),
+    transparent 40%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: inherit;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+.bento-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 48px -6px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Map minimal-card to dark luxury card for safety */
+.minimal-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.minimal-card:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Polished Metallic Gradient */
 .text-gradient {
-  background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+  background: linear-gradient(135deg, #ffffff 0%, #e2e2e8 50%, #90909a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% auto;
-  animation: shine 8s linear infinite;
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
+.silver-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #a6a6b0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Background noise texture - Disabled for maximum performance */
-.bg-noise {
-  display: none;
+/* Subtle Shimmer & Luxury Glow */
+.luxury-glow {
+  box-shadow: 0 0 50px -10px rgba(255, 255, 255, 0.08);
 }
 
-/* Section Gaps & Container - More compact */
+/* Layout Containers & Proportional Spacing */
 .section-container {
-  max-width: 1000px; /* Reduced from 1200px for a more focused feel */
+  max-width: 1060px;
   margin: 0 auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
 
-.section-spacing {
-  padding-top: clamp(2rem, 5vh, 4rem);
-  padding-bottom: clamp(2rem, 5vh, 4rem);
-}
-
-/* Tighter vertical spacing on mobile only (desktop unchanged) */
-@media (max-width: 767px) {
-  .section-spacing {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
+
+.section-spacing {
+  padding-top: clamp(3.5rem, 7vh, 6rem);
+  padding-bottom: clamp(3.5rem, 7vh, 6rem);
+}
+
+html.light-mode {
+  filter: invert(1) hue-rotate(180deg);
+  background-color: #f9f9f7; /* Inverted 060608 */
+}
+html.light-mode img,
+html.light-mode video {
+  filter: invert(1) hue-rotate(180deg);
+}
+

@@ -10,16 +10,16 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main className="relative selection:bg-primary/30">
+    <main className="relative min-h-screen">
       <CustomCursor />
       <Navbar />
       
-      <div className="flex flex-col gap-0 md:gap-4">
+      <div className="flex flex-col">
         <Hero />
         <About />
         <Skills />
-        <Experience />
         <Projects />
+        <Experience />
         <Contact />
       </div>
 

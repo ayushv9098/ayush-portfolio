@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ayushv9098.github.io/ayush-portfolio/"),
   title: "Ayush Vishwakarma | Full Stack & Android Developer",
   description: "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences.",
   keywords: ["Ayush Vishwakarma", "Full Stack Developer", "Android Developer", "Software Engineer", "Frontend Developer", "Next.js", "Kotlin", "Portfolio"],
@@ -78,8 +79,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-white flex flex-col relative">
-        <div className="bg-noise"></div>
+      <body className="min-h-screen bg-[#060608] text-[#f5f5f7] antialiased selection:bg-white/20 selection:text-white flex flex-col relative">
         {children}
         <AgentationProvider />
       </body>

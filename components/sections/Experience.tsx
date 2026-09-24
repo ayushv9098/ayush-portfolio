@@ -1,84 +1,68 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Search } from "lucide-react";
 
-const experiences = [
+const milestones = [
   {
-    role: "Full Stack & AI Developer",
-    company: "Freelance / Self-Initiated",
-    duration: "2026 - Present",
-    desc: "Building and shipping real products — English Bolo (AI English tutor), School Fee App used by 2 schools daily, and exploring AI/ML integration in web apps. Actively freelancing and learning by building.",
-    icon: <Code2 size={18} className="text-primary" />,
-    color: "from-primary/10 to-transparent"
+    period: "2026 — Present",
+    role: "Independent Creator",
+    desc: "I build and launch real applications. Right now, my custom school software handles daily operations and automated WhatsApp billing for over 400 students.",
   },
   {
-    role: "Learning & Building Phase",
-    company: "Mentored by Brother (Software Engineer)",
-    duration: "2024 - 2025",
-    desc: "Learned React, Next.js, Firebase, and Tailwind under my brother's guidance — he's a Software Engineer and taught me everything hands-on. Built my first real apps and deployed them live on Vercel.",
-    icon: <GraduationCap size={18} className="text-secondary" />,
-    color: "from-secondary/10 to-transparent"
+    period: "2024 — 2025",
+    role: "Learning & Mentorship",
+    desc: "I learned how to build modern websites using React and Next.js under the guidance of my elder brother (a Senior Tech Lead), and launched my first projects to the web.",
   },
   {
-    role: "The Spark",
-    company: "Curiosity & First Steps",
-    duration: "Before 2024",
-    desc: "Got introduced to coding by my brother. Started with basic HTML/CSS, spent hours watching him work, and slowly picked up things. That's when I realized — this is what I want to do for real.",
-    icon: <Search size={18} className="text-accent" />,
-    color: "from-accent/10 to-transparent"
+    period: "Before 2024",
+    role: "The Beginning",
+    desc: "I started by learning the basics of coding (HTML, CSS, JavaScript). I built small logic games and discovered my passion for creating software.",
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-spacing relative overflow-hidden">
-      <div className="section-container z-10 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-8 md:mb-12"
-        >
-          <h2 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight">
-            The <span className="text-gradient">Journey</span>
+    <section id="experience" className="pt-8 sm:pt-12 pb-16 sm:pb-24 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-5 sm:px-10">
+        
+        {/* Minimal Sized Header */}
+        <div className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-white mb-3">
+            My Journey
           </h2>
-          <p className="text-neutral-500 text-sm md:text-base font-light max-w-xl">
-            A concise timeline of my evolution from technology enthusiast to full-stack developer.
+          <p className="text-sm sm:text-base text-neutral-400 font-light">
+            A quick look at how I started and what I am doing now.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {experiences.map((exp, index) => (
+        {/* Premium Horizontal Split Timeline */}
+        <div className="flex flex-col border-t border-white/[0.06]">
+          {milestones.map((exp, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={exp.period}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-6 rounded-2xl border border-white/10 group relative overflow-hidden flex flex-col hover:border-white/20"
+              className="group flex flex-col md:flex-row gap-4 md:gap-16 py-8 sm:py-10 border-b border-white/[0.06] hover:bg-white/[0.01] transition-colors -mx-5 px-5 sm:-mx-10 sm:px-10"
             >
-              {/* Animated Glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-              
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                    {exp.icon}
-                  </div>
-                  <span className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-widest">{exp.duration}</span>
+              <div className="md:w-1/3 shrink-0">
+                <div className="text-xl sm:text-2xl font-light text-white mb-2 transition-transform duration-500 group-hover:translate-x-2">
+                  {exp.period}
                 </div>
-                
-                <h3 className="text-base font-bold text-white mb-1 tracking-tight group-hover:text-primary transition-colors">{exp.role}</h3>
-                <h4 className="text-[10px] text-neutral-500 mb-4 font-semibold uppercase tracking-wider">{exp.company}</h4>
-                <p className="text-xs text-neutral-400 leading-relaxed font-light">
+                <div className="text-[11px] font-mono tracking-widest uppercase text-neutral-500 transition-transform duration-500 group-hover:translate-x-2">
+                  {exp.role}
+                </div>
+              </div>
+              <div className="md:w-2/3">
+                <p className="text-sm sm:text-base text-neutral-400 font-light leading-relaxed max-w-2xl">
                   {exp.desc}
                 </p>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
