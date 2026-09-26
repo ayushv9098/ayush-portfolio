@@ -15,17 +15,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ayushv9098.github.io/ayush-portfolio/"),
-  title: "Ayush Vishwakarma | Full Stack & Android Developer",
-  description: "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences.",
-  keywords: ["Ayush Vishwakarma", "Full Stack Developer", "Android Developer", "Software Engineer", "Frontend Developer", "Next.js", "Kotlin", "Portfolio"],
+  title: "Ayush Vishwakarma | Full Stack & Android Architect",
+  description: "Self-taught Full Stack & Android Architect crafting modern web applications, Android apps and futuristic digital experiences.",
+  keywords: ["Ayush Vishwakarma", "Full Stack Architect", "Android Architect", "Software Builder", "Frontend Builder", "Next.js", "Kotlin", "Portfolio"],
   authors: [{ name: "Ayush Vishwakarma" }],
   creator: "Ayush Vishwakarma",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://ayushv9098.github.io/ayush-portfolio/",
-    title: "Ayush Vishwakarma | Full Stack & Android Developer",
-    description: "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences.",
+    title: "Ayush Vishwakarma | Full Stack & Android Architect",
+    description: "Self-taught Full Stack & Android Architect crafting modern web applications, Android apps and futuristic digital experiences.",
     siteName: "Ayush Vishwakarma Portfolio",
     images: [
       {
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayush Vishwakarma | Full Stack & Android Developer",
-    description: "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences.",
+    title: "Ayush Vishwakarma | Full Stack & Android Architect",
+    description: "Self-taught Full Stack & Android Architect crafting modern web applications, Android apps and futuristic digital experiences.",
     images: ["/ayush-profile.png"],
     creator: "@ayushv9098",
   },
@@ -58,14 +58,14 @@ export default function RootLayout({
     "@type": "Person",
     "name": "Ayush Vishwakarma",
     "url": "https://github.com/ayushv9098",
-    "jobTitle": "Full Stack & Android Developer",
+    "jobTitle": "Full Stack & Android Architect",
     "sameAs": [
       "https://www.linkedin.com/in/ayush-vishwakarma-82573a358/",
       "https://github.com/ayushv9098",
       "https://www.instagram.com/ayusxh_.10",
       "https://x.com/ayushv9098"
     ],
-    "description": "Self-taught Full Stack & Android Developer building modern web applications, Android apps and futuristic digital experiences."
+    "description": "Self-taught Full Stack & Android Architect crafting modern web applications, Android apps and futuristic digital experiences."
   };
 
   return (

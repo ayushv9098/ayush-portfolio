@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Download } from "lucide-react";
-import { GithubIcon, LinkedinIcon, TwitterIcon, InstagramIcon } from "@/components/icons/SocialIcons";
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {

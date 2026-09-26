@@ -5,11 +5,14 @@ import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggle() {
   const [isLight, setIsLight] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check local storage or system preference on mount
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
     const saved = localStorage.getItem("theme");
     if (saved === "light") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLight(true);
       document.documentElement.classList.add("light-mode");
     }
@@ -27,11 +30,17 @@ export default function ThemeToggle() {
     }
   };
 
+  if (!mounted) {
+    return (
+      <div className="w-[28px] h-[28px]" aria-hidden="true" />
+    );
+  }
+
   return (
     <button
       onClick={toggleTheme}
       className="p-1.5 hover:text-white text-neutral-300 transition-colors rounded-full hover:bg-white/10"
-      aria-label="Toggle Theme"
+      aria-label="Toggle Dark and Light Theme"
     >
       {isLight ? <Moon size={16} /> : <Sun size={16} />}
     </button>

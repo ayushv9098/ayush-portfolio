@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { LinkedinIcon, GithubIcon, InstagramIcon, TwitterIcon, DiscordIcon } from "@/components/icons/SocialIcons";
-import Link from "next/link";
+import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 const WEB3FORMS_ACCESS_KEY = "ff3a96b5-ad7f-4304-bec0-9ea6ccd31df8";
 
@@ -59,51 +57,6 @@ export default function Contact() {
     }
   };
 
-  const socials = [
-    { 
-      name: "Email", 
-      link: "mailto:ayushvishvakarma956@gmail.com", 
-      icon: <Mail size={18} />, 
-      textColor: "text-[#f43f5e]", // Rose
-      hoverEffect: "hover:bg-[#f43f5e]/10 hover:border-[#f43f5e]/30 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)]" 
-    },
-    { 
-      name: "LinkedIn", 
-      link: "https://www.linkedin.com/in/ayush-vishwakarma-82573a358/", 
-      icon: <LinkedinIcon size={18} />, 
-      textColor: "text-[#3b82f6]", // Bright Blue (LinkedIn style for dark mode)
-      hoverEffect: "hover:bg-[#3b82f6]/10 hover:border-[#3b82f6]/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]" 
-    },
-    { 
-      name: "GitHub", 
-      link: "https://github.com/ayushv9098", 
-      icon: <GithubIcon size={18} />, 
-      textColor: "text-white", // White
-      hoverEffect: "hover:bg-white/10 hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]" 
-    },
-    { 
-      name: "Twitter", 
-      link: "https://x.com/ayushv9098", 
-      icon: <TwitterIcon size={18} />, 
-      textColor: "text-[#38bdf8]", // Sky Blue
-      hoverEffect: "hover:bg-[#38bdf8]/10 hover:border-[#38bdf8]/30 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)]" 
-    },
-    { 
-      name: "Instagram", 
-      link: "https://www.instagram.com/ayusxh_.10", 
-      icon: <InstagramIcon size={18} />, 
-      textColor: "text-[#f472b6]", // Pink
-      hoverEffect: "hover:bg-[#f472b6]/10 hover:border-[#f472b6]/30 hover:shadow-[0_0_15px_rgba(244,114,182,0.3)]" 
-    },
-    { 
-      name: "Discord", 
-      link: "https://discord.com/users/1048510622851149865", 
-      icon: <DiscordIcon size={18} />, 
-      textColor: "text-[#818cf8]", // Indigo/Discord
-      hoverEffect: "hover:bg-[#818cf8]/10 hover:border-[#818cf8]/30 hover:shadow-[0_0_15px_rgba(129,140,248,0.3)]" 
-    },
-  ];
-
   return (
     <section id="contact" className="py-20 sm:py-24 relative border-t border-white/[0.06]">
       {/* Ambient Lighting */}
@@ -118,7 +71,7 @@ export default function Contact() {
             <span>Direct Inquiry</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white mb-3">
-            Let's Build <span className="text-gradient">Together</span>
+            Let&apos;s Build <span className="text-gradient">Together</span>
           </h2>
           <p className="text-sm text-neutral-400 font-light leading-relaxed">
             Have a project in mind or want to discuss opportunities? Send me a message below.
