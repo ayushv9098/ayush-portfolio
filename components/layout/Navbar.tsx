@@ -74,7 +74,7 @@ export default function Navbar() {
                 <LinkedinIcon size={14} />
               </Link>
             </div>
-            <Link href="#contact" className="inline-flex items-center gap-1.5 bg-white hover:bg-neutral-100 text-neutral-950 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all duration-300 hover:scale-102 active:scale-98 shadow-[0_2px_14px_rgba(255,255,255,0.35)]">
+            <Link href="#contact" className="inline-flex items-center gap-1.5 bg-white hover:bg-blue-500 text-neutral-950 hover:text-white text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all duration-300 hover:scale-102 active:scale-98 shadow-[0_2px_14px_rgba(255,255,255,0.35)] hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]">
               <span>Get in touch</span>
               <ArrowUpRight size={12} className="stroke-[2.5]" />
             </Link>
@@ -124,7 +124,7 @@ export default function Navbar() {
             <Link
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="bg-white text-neutral-950 text-xs font-semibold px-4 py-2 rounded-full shadow-[0_2px_10px_rgba(255,255,255,0.3)] shrink-0"
+              className="bg-white hover:bg-blue-500 text-neutral-950 hover:text-white transition-colors duration-300 text-xs font-semibold px-4 py-2 rounded-full shadow-[0_2px_10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] shrink-0"
             >
               Get in touch
             </Link>

@@ -146,7 +146,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full mt-2 h-12 bg-white hover:bg-neutral-200 text-black rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                className="w-full mt-2 h-12 bg-white hover:bg-blue-500 text-black hover:text-white rounded-xl font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]"
               >
                 {status === "loading" ? <Loader2 size={16} className="animate-spin" /> : "Send Message"}
               </button>
