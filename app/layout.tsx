@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ayushv9098.github.io/ayush-portfolio/"),
+  metadataBase: new URL("https://ayushh.me"),
   title: "Ayush Vishwakarma | Full Stack & Android Architect",
   description: "Self-taught Full Stack & Android Architect crafting modern web applications, Android apps and futuristic digital experiences.",
   keywords: ["Ayush Vishwakarma", "Full Stack Architect", "Android Architect", "Software Builder", "Frontend Builder", "Next.js", "Kotlin", "Portfolio"],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ayushv9098.github.io/ayush-portfolio/",
+    url: "https://ayushh.me",
     title: "Ayush Vishwakarma | Full Stack & Android Architect",
     description: "Self-taught Full Stack & Android Architect crafting modern web applications, Android apps and futuristic digital experiences.",
     siteName: "Ayush Vishwakarma Portfolio",
