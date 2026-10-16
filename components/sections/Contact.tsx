@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 
 const WEB3FORMS_ACCESS_KEY = "ff3a96b5-ad7f-4304-bec0-9ea6ccd31df8";
 
@@ -146,9 +146,28 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full mt-2 h-12 bg-white hover:bg-blue-500 text-black hover:text-white rounded-xl font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]"
+                className="relative w-full mt-2 h-12 rounded-xl p-[1.5px] overflow-hidden group cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/40 active:scale-[0.99] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]"
               >
-                {status === "loading" ? <Loader2 size={16} className="animate-spin" /> : "Send Message"}
+                {/* Rotating Luminous Border Beam */}
+                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,rgba(59,130,246,0.8)_35%,#60a5fa_50%,rgba(59,130,246,0.8)_65%,transparent_100%)] opacity-90 group-hover:opacity-100 group-hover:animate-[spin_2.5s_linear_infinite] transition-opacity" />
+
+                {/* Button Inner Surface - High Contrast: White in Dark Mode, Black in Light Mode */}
+                <span className="relative flex h-full w-full items-center justify-center gap-2.5 rounded-[10.5px] bg-white hover:bg-neutral-100 px-6 text-sm font-semibold text-neutral-950 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),inset_0_-1px_2px_rgba(0,0,0,0.1)]">
+                  {/* Subtle shimmer sweep on hover */}
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-black/[0.06] to-transparent pointer-events-none rounded-[10.5px]" />
+
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin text-neutral-800" />
+                      <span className="text-neutral-800">Sending message...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="tracking-wide">Send Message</span>
+                      <Send size={14} className="stroke-[2.5] text-neutral-800 group-hover:text-neutral-950 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                    </>
+                  )}
+                </span>
               </button>
 
               <AnimatePresence>

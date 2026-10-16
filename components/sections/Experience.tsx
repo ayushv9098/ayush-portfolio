@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 const milestones = [
   {
     period: "2026 — Present",
-    role: "Independent Creator",
-    desc: "I build and launch real applications. Right now, my custom school software handles daily operations and automated WhatsApp billing for over 400 students.",
+    role: "Independent Creator & BCA Student",
+    desc: "Currently in my 1st year of college pursuing BCA, while actively building and launching real applications. Right now, my custom school software handles daily operations and automated WhatsApp billing for over 400 students.",
   },
   {
     period: "2024 — 2025",

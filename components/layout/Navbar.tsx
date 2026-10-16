@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/icons/SocialIcons";
@@ -9,6 +9,8 @@ import ThemeToggle from "@/components/layout/ThemeToggle";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,36 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const handleOutsideInteraction = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node;
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(target) &&
+        toggleBtnRef.current &&
+        !toggleBtnRef.current.contains(target)
+      ) {
+        setMobileOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleOutsideInteraction);
+    document.addEventListener("touchstart", handleOutsideInteraction);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideInteraction);
+      document.removeEventListener("touchstart", handleOutsideInteraction);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileOpen]);
 
   const navLinks = [
     { name: "About", href: "#about" },
@@ -38,8 +70,35 @@ export default function Navbar() {
 
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2.5 group relative z-10">
-          <span className="w-7 h-7 rounded-full bg-gradient-to-b from-white via-neutral-100 to-neutral-300 text-neutral-950 text-xs font-bold flex items-center justify-center shadow-[0_2px_8px_rgba(255,255,255,0.3),inset_0_1px_1px_rgba(255,255,255,0.9)] transition-transform duration-300 group-hover:scale-105">
-            A
+          <span className="w-7.5 h-7.5 rounded-xl bg-gradient-to-b from-white/[0.12] to-white/[0.03] border border-white/[0.15] shadow-[0_4px_16px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-white/30 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] shrink-0">
+            <svg width="19" height="19" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="translate-y-[-1px]">
+              <defs>
+                <linearGradient id="navPlatA" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#ffffff" />
+                  <stop offset="50%" stopColor="#e2e8f0" />
+                  <stop offset="100%" stopColor="#94a3b8" />
+                </linearGradient>
+                <linearGradient id="navPlatV" x1="100%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#f8fafc" />
+                  <stop offset="50%" stopColor="#64748b" />
+                  <stop offset="100%" stopColor="#334155" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M190 190 L286 410 L382 190"
+                stroke="url(#navPlatV)"
+                strokeWidth="52"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M226 150 L130 370 M226 150 L322 370 M165 300 L287 300"
+                stroke="url(#navPlatA)"
+                strokeWidth="52"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </span>
           <div className="flex flex-col">
             <span className="text-white text-sm font-semibold tracking-tight leading-none group-hover:text-neutral-200 transition-colors drop-shadow-xs">
@@ -86,8 +145,9 @@ export default function Navbar() {
             
             {/* Mobile Menu Toggle Button */}
             <button
+              ref={toggleBtnRef}
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-1.5 text-neutral-200 hover:text-white focus:outline-none rounded-lg hover:bg-white/10 transition-colors"
+              className="md:hidden p-1.5 text-neutral-200 hover:text-white focus:outline-none rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -96,9 +156,21 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile Backdrop Overlay - closes menu when touching outside */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-40 pointer-events-auto"
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile Dropdown */}
       {mobileOpen && (
-        <div className="md:hidden fixed top-[72px] left-3 right-3 bg-gradient-to-b from-white/[0.12] to-transparent backdrop-blur-[40px] border border-white/[0.15] rounded-3xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_0_0_1px_rgba(255,255,255,0.05)] flex flex-col gap-2 z-50 pointer-events-auto">
+        <div
+          ref={menuRef}
+          className="md:hidden fixed top-[72px] left-3 right-3 bg-gradient-to-b from-white/[0.12] to-transparent backdrop-blur-[40px] border border-white/[0.15] rounded-3xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_0_0_1px_rgba(255,255,255,0.05)] flex flex-col gap-2 z-50 pointer-events-auto"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.name}

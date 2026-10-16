@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AgentationProvider } from "@/components/AgentationProvider";
+import Clarity from "@/components/analytics/Clarity";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -82,6 +83,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#060608] text-[#f5f5f7] antialiased selection:bg-white/20 selection:text-white flex flex-col relative">
         {children}
         <AgentationProvider />
+        <Clarity />
       </body>
     </html>
   );
